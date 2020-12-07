@@ -391,7 +391,7 @@
     FROM
         pms_product_category
     WHERE
-        parent_id = 0
+        parent_id = #{parentId}
   </select>
   <!-- 查询所有 -->
 </mapper>

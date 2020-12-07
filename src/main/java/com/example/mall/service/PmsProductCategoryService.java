@@ -11,7 +11,7 @@ public interface PmsProductCategoryService {
      * @param page
      * @return
      */
-    PageInfo<PmsProductCategory> findByPage(int size,int page);
+    PageInfo<PmsProductCategory> findByPage(Long parentId, int size,int page);
 
     /**
      * 保存方法
@@ -26,4 +26,11 @@ public interface PmsProductCategoryService {
      * @return
      */
     boolean update(PmsProductCategory pmsProductCategory);
+
+    /**
+     * 删除
+     * @param id 主键
+     * @return
+     */
+    boolean delete(String id);
 }

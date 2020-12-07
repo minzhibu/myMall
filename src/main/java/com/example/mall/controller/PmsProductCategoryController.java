@@ -25,14 +25,14 @@ public class PmsProductCategoryController {
         this.pmsProductCategoryService = pmsProductCategoryService;
     }
 
-    @GetMapping("/list/{page}/{size}")
-    public CommonResult findByPage(@PathVariable("page") String page, @PathVariable("size") String size){
+    @GetMapping("/list/{parentId}/{page}/{size}")
+    public CommonResult findByPage(@PathVariable("parentId") String parentId, @PathVariable("page") String page, @PathVariable("size") String size){
         PageInfo<PmsProductCategory> PmsProductCategorys = null;
         try{
             if(!StringCommon.isNotEmpty(page) && !StringCommon.isNotEmpty(size)){
                 return CommonResult.failed("参数异常");
             }
-            PmsProductCategorys = pmsProductCategoryService.findByPage(Integer.parseInt(page), Integer.parseInt(size));
+            PmsProductCategorys = pmsProductCategoryService.findByPage(Long.parseLong(parentId),Integer.parseInt(page), Integer.parseInt(size));
         }catch(Exception e){
             return CommonResult.failed("查询异常");
         }
@@ -47,7 +47,7 @@ public class PmsProductCategoryController {
         if(result){
             return CommonResult.success("保存成功");
         }else{
-            return CommonResult.success("保存失败");
+            return CommonResult.failed("保存失败");
         }
     }
 
@@ -57,7 +57,17 @@ public class PmsProductCategoryController {
         if(result){
             return CommonResult.success("修改成功");
         }else{
-            return CommonResult.success("修改失败");
+            return CommonResult.failed("修改失败");
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public CommonResult delete(@PathVariable("id") String id){
+        boolean result = pmsProductCategoryService.delete(id);
+        if(result){
+            return CommonResult.success("删除成功");
+        }else{
+            return CommonResult.failed("删除失败");
         }
     }
 }

@@ -15,7 +15,7 @@ class MyMallApplicationTests {
 
     @Test
     void contextLoads() {
-        PageInfo<PmsProductCategory> byPage = pmsProductCategoryService.findByPage(1, 5);
+        PageInfo<PmsProductCategory> byPage = pmsProductCategoryService.findByPage(1L,1, 5);
         System.out.println(byPage);
     }
 

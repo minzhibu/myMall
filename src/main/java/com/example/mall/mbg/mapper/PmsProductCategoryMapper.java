@@ -34,5 +34,5 @@ public interface PmsProductCategoryMapper {
 
     int updateByPrimaryKey(PmsProductCategory record);
 
-    List<PmsProductCategory> findAll();
+    List<PmsProductCategory> findAll(@Param("parentId") Long parentId);
 }

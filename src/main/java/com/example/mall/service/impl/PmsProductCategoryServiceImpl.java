@@ -20,9 +20,9 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
     }
 
     @Override
-    public PageInfo<PmsProductCategory> findByPage(int size, int page) {
+    public PageInfo<PmsProductCategory> findByPage(Long parentId, int size, int page) {
         PageHelper.startPage(size, page);
-        List<PmsProductCategory> pmsProductCategorys = pmsProductCategoryMapper.findAll();
+        List<PmsProductCategory> pmsProductCategorys = pmsProductCategoryMapper.findAll(parentId);
         return new PageInfo<>(pmsProductCategorys);
     }
 
@@ -53,6 +53,15 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
         pmsProductCategory1.setKeywords(pmsProductCategory.getKeywords());
         pmsProductCategory1.setDescription(pmsProductCategory.getDescription());
         int result = pmsProductCategoryMapper.updateByPrimaryKey(pmsProductCategory1);
+        return result == 1;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        if(id == null){
+            return false;
+        }
+        int result = pmsProductCategoryMapper.deleteByPrimaryKey(Long.parseLong(id));
         return result == 1;
     }
 
