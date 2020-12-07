@@ -40,4 +40,14 @@ public class PmsProductCategoryController {
         PageDTO pageDTO = new PageDTO(PmsProductCategorys);
         return CommonResult.success(pageDTO);
     }
+
+    @PostMapping("/")
+    public CommonResult save(@RequestBody PmsProductCategory pmsProductCategory){
+        boolean result = pmsProductCategoryService.save(pmsProductCategory);
+        if(result){
+            return CommonResult.success("保存成功");
+        }else{
+            return CommonResult.success("保存失败");
+        }
+    }
 }

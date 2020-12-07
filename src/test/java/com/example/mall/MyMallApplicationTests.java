@@ -19,4 +19,18 @@ class MyMallApplicationTests {
         System.out.println(byPage);
     }
 
+    @Test
+    void testPmsProductCategorySave(){
+        PmsProductCategory pmsProductCategory = new PmsProductCategory();
+        pmsProductCategory.setParentId(0L);
+        pmsProductCategory.setName("测试");
+        pmsProductCategory.setLevel(0);
+        pmsProductCategory.setProductCount(100);
+        pmsProductCategory.setProductUnit("件");
+        pmsProductCategory.setNavStatus(1);
+        pmsProductCategory.setShowStatus(1);
+        pmsProductCategory.setSort(1);
+        pmsProductCategory.setKeywords("家具");
+        pmsProductCategoryService.save(pmsProductCategory);
+    }
 }

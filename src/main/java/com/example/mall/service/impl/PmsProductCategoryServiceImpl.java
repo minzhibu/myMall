@@ -5,7 +5,6 @@ import com.example.mall.mbg.model.PmsProductCategory;
 import com.example.mall.service.PmsProductCategoryService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,5 +23,11 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
         PageHelper.startPage(size, page);
         List<PmsProductCategory> pmsProductCategorys = pmsProductCategoryMapper.findAll();
         return new PageInfo<>(pmsProductCategorys);
+    }
+
+    @Override
+    public boolean save(PmsProductCategory pmsProductCategory) {
+        int result = pmsProductCategoryMapper.insert(pmsProductCategory);
+        return result == 1;
     }
 }
