@@ -50,4 +50,14 @@ public class PmsProductCategoryController {
             return CommonResult.success("保存失败");
         }
     }
+
+    @PutMapping("/")
+    public CommonResult update(@RequestBody PmsProductCategory pmsProductCategory){
+        boolean result = pmsProductCategoryService.update(pmsProductCategory);
+        if(result){
+            return CommonResult.success("修改成功");
+        }else{
+            return CommonResult.success("修改失败");
+        }
+    }
 }

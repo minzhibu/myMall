@@ -19,4 +19,11 @@ public interface PmsProductCategoryService {
      * @return
      */
     boolean save(PmsProductCategory pmsProductCategory);
+
+    /**
+     * 修改方法
+     * @param pmsProductCategory
+     * @return
+     */
+    boolean update(PmsProductCategory pmsProductCategory);
 }
