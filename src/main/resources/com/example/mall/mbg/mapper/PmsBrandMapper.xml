@@ -355,4 +355,20 @@
       big_pic = #{bigPic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="findByAll" parameterType="com.example.mall.mbg.model.PmsBrandExample" resultMap="BaseResultMap">
+  SELECT
+      id,
+      NAME,
+      first_letter,
+      sort,
+      factory_status,
+      show_status,
+      product_count,
+      product_comment_count,
+      logo,
+      big_pic,
+      brand_story
+  FROM
+      pms_brand
+  </select>
 </mapper>

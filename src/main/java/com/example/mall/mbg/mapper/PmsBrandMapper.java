@@ -3,6 +3,8 @@ package com.example.mall.mbg.mapper;
 import com.example.mall.mbg.model.PmsBrand;
 import com.example.mall.mbg.model.PmsBrandExample;
 import java.util.List;
+
+import com.example.mall.mbg.model.PmsProductCategory;
 import org.apache.ibatis.annotations.Param;
 
 public interface PmsBrandMapper {
@@ -33,4 +35,6 @@ public interface PmsBrandMapper {
     int updateByPrimaryKeyWithBLOBs(PmsBrand record);
 
     int updateByPrimaryKey(PmsBrand record);
+
+    List<PmsBrand> findAll();
 }
