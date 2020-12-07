@@ -33,4 +33,6 @@ public interface PmsProductCategoryMapper {
     int updateByPrimaryKeyWithBLOBs(PmsProductCategory record);
 
     int updateByPrimaryKey(PmsProductCategory record);
+
+    List<PmsProductCategory> findAll();
 }

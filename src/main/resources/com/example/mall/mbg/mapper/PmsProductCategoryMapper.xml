@@ -372,4 +372,26 @@
       keywords = #{keywords,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <!-- 查询所有 -->
+  <select id="findAll" parameterType="com.example.mall.mbg.model.PmsProductCategory" resultMap="BaseResultMap">
+    SELECT
+        id,
+        parent_id,
+        NAME,
+        LEVEL,
+        product_count,
+        product_unit,
+        nav_status,
+        show_status,
+        sort,
+        icon,
+        keywords,
+        description
+    FROM
+        pms_product_category
+    WHERE
+        parent_id = 0
+  </select>
+  <!-- 查询所有 -->
 </mapper>
