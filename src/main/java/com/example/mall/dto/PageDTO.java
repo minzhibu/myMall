@@ -6,6 +6,10 @@ import lombok.ToString;
 
 import java.util.List;
 
+/**
+ * 分页对象
+ * @param <T>
+ */
 @Data
 @ToString
 public class PageDTO<T>{
