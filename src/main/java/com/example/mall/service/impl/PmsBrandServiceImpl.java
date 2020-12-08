@@ -53,6 +53,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         pmsBrand1.setSort(pmsBrand.getSort());
         pmsBrand1.setFactoryStatus(pmsBrand.getFactoryStatus());
         pmsBrand1.setShowStatus(pmsBrand.getShowStatus());
+        pmsBrand1.setProductCount(pmsBrand.getProductCount());
         pmsBrand1.setProductCommentCount(pmsBrand.getProductCommentCount());
         pmsBrand1.setLogo(pmsBrand.getLogo());
         pmsBrand1.setBigPic(pmsBrand.getBigPic());

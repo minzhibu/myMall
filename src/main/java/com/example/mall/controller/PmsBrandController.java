@@ -23,8 +23,15 @@ public class PmsBrandController {
         this.pmsBrandService = pmsBrandService;
     }
 
-    @GetMapping("/list/{keyword}/{page}/{size}")
-    public CommonResult findByPage(@PathVariable("keyword") String keyword, @PathVariable("page") String page, @PathVariable("size") String size){
+    /**
+     *
+     * @param keyword 不是必填
+     * @param page 当前页
+     * @param size 一页的条目数
+     * @return
+     */
+    @GetMapping("/list/{page}/{size}")
+    public CommonResult findByPage(@RequestParam(value = "keyword", required = false) String keyword, @PathVariable("page") String page, @PathVariable("size") String size){
         PageInfo<PmsBrand> PmsBrands = null;
         try{
             if(!StringCommon.isNotEmpty(page) && !StringCommon.isNotEmpty(size)){

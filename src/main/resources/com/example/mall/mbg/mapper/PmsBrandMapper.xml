@@ -288,6 +288,7 @@
       product_comment_count = #{record.productCommentCount,jdbcType=INTEGER},
       logo = #{record.logo,jdbcType=VARCHAR},
       big_pic = #{record.bigPic,jdbcType=VARCHAR}
+      brand_story = #{record.brandStory,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -352,11 +353,12 @@
       product_count = #{productCount,jdbcType=INTEGER},
       product_comment_count = #{productCommentCount,jdbcType=INTEGER},
       logo = #{logo,jdbcType=VARCHAR},
-      big_pic = #{bigPic,jdbcType=VARCHAR}
+      big_pic = #{bigPic,jdbcType=VARCHAR},
+      brand_story = #{brandStory,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <!-- 查询所有方法 -->
-  <select id="findByAll" parameterType="com.example.mall.mbg.model.PmsBrandExample" resultMap="BaseResultMap">
+  <select id="findAll" parameterType="com.example.mall.mbg.model.PmsBrandExample" resultMap="BaseResultMap">
     SELECT
         id,
         NAME,
