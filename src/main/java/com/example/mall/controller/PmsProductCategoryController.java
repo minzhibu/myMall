@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.*;
  *@author: songjiamin
  *@Time: 2020/12/7  10:49
  */
-@Controller
+@RestController
 @RequestMapping("/productCategory")
-@ResponseBody
 public class PmsProductCategoryController {
 
     private final PmsProductCategoryService pmsProductCategoryService;
