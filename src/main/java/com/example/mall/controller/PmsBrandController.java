@@ -1,7 +1,12 @@
 package com.example.mall.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.mall.common.CommonResult;
+import com.example.mall.common.StringCommon;
+import com.example.mall.dto.PageDTO;
+import com.example.mall.mbg.model.PmsBrand;
+import com.example.mall.service.PmsBrandService;
+import com.github.pagehelper.PageInfo;
+import org.springframework.web.bind.annotation.*;
 
 /*
  *@program:myMall
@@ -12,5 +17,55 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/brand")
 public class PmsBrandController {
+    private final PmsBrandService pmsBrandService;
 
+    public PmsBrandController(PmsBrandService pmsBrandService) {
+        this.pmsBrandService = pmsBrandService;
+    }
+
+    @GetMapping("/list/{keyword}/{page}/{size}")
+    public CommonResult findByPage(@PathVariable("keyword") String keyword, @PathVariable("page") String page, @PathVariable("size") String size){
+        PageInfo<PmsBrand> PmsBrands = null;
+        try{
+            if(!StringCommon.isNotEmpty(page) && !StringCommon.isNotEmpty(size)){
+                return CommonResult.failed("参数异常");
+            }
+            PmsBrands = pmsBrandService.findByPage(keyword, Integer.parseInt(page), Integer.parseInt(size));
+        }catch(Exception e){
+            return CommonResult.failed("查询异常");
+        }
+        //构造分页参数
+        PageDTO pageDTO = new PageDTO(PmsBrands);
+        return CommonResult.success(pageDTO);
+    }
+
+    @PostMapping("/")
+    public CommonResult save(@RequestBody PmsBrand pmsBrand){
+        boolean result = pmsBrandService.save(pmsBrand);
+        if(result){
+            return CommonResult.success("保存成功");
+        }else{
+            return CommonResult.failed("保存失败");
+        }
+    }
+
+    @PutMapping("/")
+    public CommonResult update(@RequestBody PmsBrand pmsBrand){
+        boolean result = pmsBrandService.update(pmsBrand);
+        if(result){
+            return CommonResult.success("修改成功");
+        }else{
+            return CommonResult.failed("修改失败");
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public CommonResult delete(@PathVariable("id") String id){
+        boolean result = pmsBrandService.delete(id);
+        if(result){
+            return CommonResult.success("删除成功");
+        }else{
+            return CommonResult.failed("删除失败");
+        }
+    }
 }

@@ -17,7 +17,7 @@ public interface PmsBrandService {
      * @param page
      * @return
      */
-    PageInfo<PmsBrand> findByPage(int size, int page);
+    PageInfo<PmsBrand> findByPage(String keyword, int size, int page);
 
     /**
      * 保存方法

@@ -25,10 +25,10 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     }
 
     @Override
-    public PageInfo<PmsBrand> findByPage(int size, int page) {
+    public PageInfo<PmsBrand> findByPage(String keyword, int size, int page) {
         PageHelper.startPage(size, page);
-        List<PmsBrand> pmsProductCategorys = pmsBrandMapper.findAll();
-        return new PageInfo<>(pmsProductCategorys);
+        List<PmsBrand> pmsBrands = pmsBrandMapper.findAll(keyword);
+        return new PageInfo<>(pmsBrands);
     }
 
     @Override

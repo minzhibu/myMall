@@ -36,5 +36,5 @@ public interface PmsBrandMapper {
 
     int updateByPrimaryKey(PmsBrand record);
 
-    List<PmsBrand> findAll();
+    List<PmsBrand> findAll(@Param("keyword") String keyword);
 }

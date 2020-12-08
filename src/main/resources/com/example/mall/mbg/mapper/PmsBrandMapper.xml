@@ -355,20 +355,27 @@
       big_pic = #{bigPic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <!-- 查询所有方法 -->
   <select id="findByAll" parameterType="com.example.mall.mbg.model.PmsBrandExample" resultMap="BaseResultMap">
-  SELECT
-      id,
-      NAME,
-      first_letter,
-      sort,
-      factory_status,
-      show_status,
-      product_count,
-      product_comment_count,
-      logo,
-      big_pic,
-      brand_story
-  FROM
-      pms_brand
+    SELECT
+        id,
+        NAME,
+        first_letter,
+        sort,
+        factory_status,
+        show_status,
+        product_count,
+        product_comment_count,
+        logo,
+        big_pic,
+        brand_story
+    FROM
+        pms_brand
+    <where>
+      <if test="keyword != null">
+        NAME like concat('%',#{keyword},'%')
+      </if>
+    </where>
   </select>
+  <!-- 查询所有方法 -->
 </mapper>
