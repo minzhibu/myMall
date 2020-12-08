@@ -6,7 +6,6 @@ import com.example.mall.dto.PageDTO;
 import com.example.mall.mbg.model.PmsProductCategory;
 import com.example.mall.service.PmsProductCategoryService;
 import com.github.pagehelper.PageInfo;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /*

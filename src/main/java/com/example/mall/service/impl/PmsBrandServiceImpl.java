@@ -47,7 +47,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         if(!parameterValidation(pmsBrand)){
             return false;
         }
-        PmsBrand pmsBrand1 = pmsBrandMapper.selectByPrimaryKey(PmsBrand.getId());
+        PmsBrand pmsBrand1 = pmsBrandMapper.selectByPrimaryKey(pmsBrand.getId());
         pmsBrand1.setName(pmsBrand.getName());
         pmsBrand1.setFirstLetter(pmsBrand.getFirstLetter());
         pmsBrand1.setSort(pmsBrand.getSort());
