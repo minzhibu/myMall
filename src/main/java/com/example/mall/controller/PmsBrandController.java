@@ -75,4 +75,14 @@ public class PmsBrandController {
             return CommonResult.failed("删除失败");
         }
     }
+
+    @PostMapping("/update/showStatus")
+    public CommonResult updateShowStatus(@RequestParam("ids") String ids, @RequestParam("showStatus") String showStatus){
+        boolean result = pmsBrandService.updateShowStatus(ids, showStatus);
+        if(result){
+            return CommonResult.success("修改成功");
+        }else{
+            return CommonResult.failed("修改失败");
+        }
+    }
 }

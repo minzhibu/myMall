@@ -39,4 +39,12 @@ public interface PmsBrandService {
      * @return
      */
     boolean delete(String id);
+
+    /**
+     * 批量修改是否显示
+     * @param ids
+     * @param showStatus
+     * @return
+     */
+    boolean updateShowStatus(String ids,String showStatus);
 }

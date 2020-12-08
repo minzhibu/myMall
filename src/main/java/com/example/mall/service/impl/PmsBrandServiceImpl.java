@@ -6,14 +6,20 @@ package com.example.mall.service.impl;
  *@Time: 2020/12/7  16:05
  */
 
+import com.example.mall.common.StringCommon;
 import com.example.mall.mbg.mapper.PmsBrandMapper;
 import com.example.mall.mbg.model.PmsBrand;
+import com.example.mall.mbg.model.PmsBrandExample;
 import com.example.mall.service.PmsBrandService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PmsBrandServiceImpl implements PmsBrandService {
@@ -68,12 +74,33 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         return result == 1;
     }
 
+    @Override
+    public boolean updateShowStatus(String ids, String showStatus) {
+        ArrayList<Long> id = Stream.of(ids.split(",")).mapToLong(Long::parseLong).collect(ArrayList::new,
+                ArrayList::add,
+                ArrayList::addAll);
+        PmsBrand pmsBrand = new PmsBrand();
+        pmsBrand.setShowStatus(Integer.parseInt(showStatus));
+        PmsBrandExample pmsBrandExample = new PmsBrandExample();
+        pmsBrandExample.createCriteria().andIdIn(id);
+        pmsBrandMapper.updateByExampleSelective(pmsBrand, pmsBrandExample);
+        return true;
+    }
+
     /**
      * 参数效验
      * @param pmsBrand
      * @return
      */
     private boolean parameterValidation(PmsBrand pmsBrand){
-       return true;
+        return  StringCommon.isNotEmpty(pmsBrand.getName()) &&
+                StringCommon.isNotEmpty(pmsBrand.getFirstLetter()) &&
+                pmsBrand.getSort() != null &&
+                pmsBrand.getFactoryStatus() != null &&
+                pmsBrand.getShowStatus() != null &&
+                pmsBrand.getProductCount() != null &&
+                pmsBrand.getProductCommentCount() != null &&
+                StringCommon.isNotEmpty(pmsBrand.getLogo()) &&
+                StringCommon.isNotEmpty(pmsBrand.getBigPic());
     }
 }
