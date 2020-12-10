@@ -17,8 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -40,7 +38,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     @Override
     public boolean save(PmsBrand pmsBrand) {
         //参数效验
-        if(!parameterValidation(pmsBrand)){
+        if(parameterValidation(pmsBrand)){
             return false;
         }
         int result = pmsBrandMapper.insert(pmsBrand);
@@ -50,7 +48,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     @Override
     public boolean update(PmsBrand pmsBrand) {
         //参数效验
-        if(!parameterValidation(pmsBrand)){
+        if(parameterValidation(pmsBrand)){
             return false;
         }
         PmsBrand pmsBrand1 = pmsBrandMapper.selectByPrimaryKey(pmsBrand.getId());
@@ -93,14 +91,14 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      * @return
      */
     private boolean parameterValidation(PmsBrand pmsBrand){
-        return  StringCommon.isNotEmpty(pmsBrand.getName()) &&
-                StringCommon.isNotEmpty(pmsBrand.getFirstLetter()) &&
-                pmsBrand.getSort() != null &&
-                pmsBrand.getFactoryStatus() != null &&
-                pmsBrand.getShowStatus() != null &&
-                pmsBrand.getProductCount() != null &&
-                pmsBrand.getProductCommentCount() != null &&
-                StringCommon.isNotEmpty(pmsBrand.getLogo()) &&
-                StringCommon.isNotEmpty(pmsBrand.getBigPic());
+        return !StringCommon.isNotEmpty(pmsBrand.getName()) ||
+                !StringCommon.isNotEmpty(pmsBrand.getFirstLetter()) ||
+                pmsBrand.getSort() == null ||
+                pmsBrand.getFactoryStatus() == null ||
+                pmsBrand.getShowStatus() == null ||
+                pmsBrand.getProductCount() == null ||
+                pmsBrand.getProductCommentCount() == null ||
+                !StringCommon.isNotEmpty(pmsBrand.getLogo()) ||
+                !StringCommon.isNotEmpty(pmsBrand.getBigPic());
     }
 }
