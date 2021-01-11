@@ -121,6 +121,7 @@
       <if test="startDate != null">
         start_date,
       </if>
+
       <if test="endDate != null">
         end_date,
       </if>
@@ -223,4 +224,19 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="findAll" parameterType="com.example.mall.mbg.model.SmsFlashPromotion" resultMap="BaseResultMap">
+    select
+    id,
+    title,
+    start_date,
+    end_date,
+    status,
+    create_time
+    from
+    sms_flash_promotion
+    <if test="title != null">
+      where
+      title LIKE #{title, jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

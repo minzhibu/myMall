@@ -27,4 +27,6 @@ public interface SmsFlashPromotionMapper {
     int updateByPrimaryKeySelective(SmsFlashPromotion record);
 
     int updateByPrimaryKey(SmsFlashPromotion record);
+
+    List<SmsFlashPromotion> findAll(@Param("title")String title);
 }

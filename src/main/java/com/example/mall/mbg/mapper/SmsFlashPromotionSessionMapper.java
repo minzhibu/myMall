@@ -27,4 +27,6 @@ public interface SmsFlashPromotionSessionMapper {
     int updateByPrimaryKeySelective(SmsFlashPromotionSession record);
 
     int updateByPrimaryKey(SmsFlashPromotionSession record);
+
+    List<SmsFlashPromotionSession> findAll();
 }
